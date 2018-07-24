@@ -1,0 +1,156 @@
+//定义全局变量 京东移动端主体颜色
+@mainColor:#de181b;
+/* 公共的样式放到base.less里面 */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    /* 防止边框padding超出页面宽度出现滚动条 */
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    /*一般移动端清除a的点击高亮  透明就表示去掉*/
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-size: 16px;
+}
+input {
+    border: none;
+    outline: none;
+    /*清除移动端默认的表单样式*/
+    -webkit-appearance: none;
+}
+
+img {
+    /* 解决图片3px的间距 */
+    vertical-align: middle;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+//主体容器最大宽640px 也可以根据设计稿来设定 比如设计稿750 就设定为750
+.layout {
+    /* 最大640px */
+    max-width: 640px;
+    /* 最小 320px*/
+    min-width: 320px;
+    /* 	居中显示 */
+    margin: 0px auto;
+    background-color: #f5f5f5;
+    padding-bottom: 0.78125rem;
+    //头部共用样式
+    #header {
+        height: 0.625rem;
+        display: flex;
+        padding: 0.078125rem 0;
+        // background-color: @mainColor;
+        position: fixed;
+        top: 0;
+        z-index: 998;
+        /* 固定定位宽度是参照整个浏览器窗口的宽度 */
+        width: 100%;
+        /* 给固定定位的头部单独添加最大宽度 */
+        max-width: 640px;
+        /*属性选择器选中所有以 icon- 开头的类名*/
+        [class^='icon-']{
+            background: url(../images/sprites.png);
+            /* 要把整个背景图都缩小一半  注意不能使用百分比因为百分比是参照当前元素的宽高*/
+            background-size: 3.125rem 3.125rem;
+            /* 让背景图从内容区域开始定位 */
+            background-origin: content-box;
+             /* 裁切掉内容区域以外的背景图 */
+            background-clip: content-box;
+        }
+        > .icon-logo {
+            width: 1.09375rem;
+            height: 0.46875rem;
+            padding: 0 0.078125rem;
+            background-position: 0 -1.640625rem;
+        }
+        form {
+            flex: 1;
+            position: relative;
+            .icon-search {
+                width: 0.3125rem;
+                height: 0.3125rem;
+                position: absolute;
+                top: 0.0625rem;
+                left: 0.140625rem;
+                background-position: -0.9375rem -1.703125rem;
+            }
+            input {
+                width: 100%;
+                height: 0.46875rem;
+                border-radius: 15px;
+                padding-left: 0.46875rem;
+                font-size: 0.1875rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+        .login {
+            width: 0.78125rem;
+            height: 0.546875rem;
+            line-height: 0.46875rem;
+            font-size: 0.21875rem;
+            color: #fff;
+            text-align: center;
+        }
+        .icon-back {
+            width: 0.625rem;
+            height: 0.46875rem;
+            padding: 0.09375rem 0.15625rem 0;
+            display: block;
+            background-position: -0.34375rem 0;
+        }
+        .icon-menu {
+            width: 0.625rem;
+            height: 0.625rem;
+            padding: 0.15625rem;
+            margin-top: -0.078125rem;
+            background-position: -0.953125rem 0;
+
+        }
+    }
+}
+
+// 底部样式区域
+#footer {
+    height: 0.78125rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 998;
+    background-color: #fff;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 0 0 0.015625rem 0.015625rem #e0e0e0;
+    >ul {
+        display: flex;
+        >li {
+            width: 25%;
+            // flex: 1; 给这个宽度也可以
+            text-align: center;
+            >a {
+                display: block;
+                width: 100%;
+                >img {
+                    width: 1.015625rem;
+                    height: 0.78125rem;
+                }
+            }
+        }
+    }
+}
